@@ -34,7 +34,6 @@ Dự án lai (vd CRM + đội quảng cáo dùng CRM): mỗi phần một khung,
 ├── RA_SOAT_DINH_KY.md
 ├── .env
 ├── kho_tri_thuc/                    tầng CHUNG: cách nghĩ, thước đo chất lượng, luật, mẫu
-│   └── tham_khao_cu/
 ├── <nhom>/<ten>/                    tầng RIÊNG: một kênh / một khách hàng / một sản phẩm / một chi nhánh — tham số riêng
 │   └── <don_vi_viec>/               tầng ĐƠN VỊ VIỆC: một sản phẩm nội dung / một chiến dịch / một đơn / một kỳ sổ
 ├── cong_cu/<nhom_viec>/             script theo việc
