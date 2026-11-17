@@ -44,13 +44,17 @@ Thắng khi mâu thuẫn: lời chủ dự án > Chung > Riêng > Đơn vị vi�
 1. **Theo việc, không theo tài liệu.** Bảng việc có 4 cột: *MỞ trước* · *NỘP ra* · *MÁY chặn* · *AI duyệt*. Bắt đầu việc nào thì mở đúng các file ở cột MỞ, ghi một dòng `MỞ V<n> — <ngày> — đã đọc: …` vào nhật ký. Không làm theo trí nhớ.
 2. **Mỗi việc một mẫu riêng.** Hai việc na ná nhau (review bản thiết kế / review code; kiểm nội dung / kiểm thành phẩm; duyệt ngân sách / duyệt báo cáo) mà dùng chung một mẫu → AI chấm nhầm thước đo. Mẫu nằm ngay trong file thước đo của việc đó, bảng việc trỏ đúng mẫu.
 3. **Máy chặn hơn lời nhắc.** Điều gì đã bị quên 2 lần → viết thành kiểm tra tự động, đặt ngay trước bước tốn kém hoặc không quay lại được (merge/deploy, migration DB, gửi khách, tiêu tiền quảng cáo, xuất bản). Báo lý do + file cần đọc.
+   **Máy chặn cũng phải được thử "đạt giả"**: mỗi khi đổi ngôn ngữ, định dạng dữ liệu hoặc loại sản phẩm, cố tình đưa vào một ca vi phạm đã biết và xem máy có bắt không. Máy viết cho dữ liệu cũ có thể chạy êm và báo "0 lỗi" chỉ vì không đọc được dữ liệu mới (vd máy chống chép tách từ theo dấu cách → với tiếng Nhật/Trung không có dấu cách thì luôn "đạt").
 4. **Luật từ sự cố, không từ tưởng tượng.** Chỉ thêm luật khi AI đã làm sai phải nhắc lại. Ghi sự cố ngay cạnh luật. Luật không còn lý do → bỏ.
 5. **Người làm không tự chấm mình.** Kết quả quan trọng có người/AI độc lập kiểm theo thước đo viết sẵn (test, checklist, bảng chấm); chủ dự án chốt.
+   Checklist chỉ đo "đã làm đủ bước chưa", không đo "có tốt bằng bản tốt nhất đã biết chưa" — đạt 100% checklist mà sản phẩm vẫn nhạt là chuyện thường. Với sản phẩm cần chất lượng (nội dung, thiết kế, đề xuất bán hàng), thước đo kèm **một phép so mù với mẫu tốt nhất đã biết** (bản thắng của đối thủ, bản đã từng thành công): người kiểm không biết bản nào của mình, chọn bản tốt hơn ở từng đoạn và nói vì sao.
 6. **Sửa tại chỗ, không tạo bản "mới", "v2", "final", "_enhanced".** Hai bản cùng tồn tại = AI đọc nhầm bản. Với code: dùng git, không nhân bản file.
-7. **File cũ không được nằm ở chỗ AI tự nạp** (`.claude/`, `.agents/`, `.cursor/`, gốc dự án, thư mục skills, `~/.claude/`). Ghi chữ "cũ" trong file là KHÔNG đủ: skill/agent cũ vẫn tự bật theo mô tả. Chuyển vào `tham_khao_cu/` hoặc xoá.
-8. **Nhiều AI làm chung: mỗi lần một việc** qua hộp thư (hoặc issue/ticket); việc mới chỉ giao sau khi việc trước báo XONG.
+7. **File cũ không được nằm ở chỗ AI tự nạp** (`.claude/`, `.agents/`, `.cursor/`, gốc dự án, thư mục skills, `~/.claude/`). Ghi chữ "cũ" trong file là KHÔNG đủ: skill/agent cũ vẫn tự bật theo mô tả. **Mặc định xoá** (grep tên ra 0 chỗ dẫn tới). Tài liệu "chỉ để tra cứu" vẫn bị AI đọc rồi làm theo và sinh mâu thuẫn; chỉ giữ khi thật cần tra, đặt ngoài mọi chỗ tự nạp, ghi hạn rà — hết hạn không ai dẫn tới thì xoá.
+8. **Nhiều AI làm chung: mỗi lần một việc** qua hộp thư (hoặc issue/ticket); việc mới chỉ giao sau khi việc trước báo XONG. Việc chờ để ở một ngăn riêng mà AI nhận không đọc, chuyển sang khi có XONG.
+   **AI phụ không tạo tài liệu chung** (luật, thước đo, quy trình, mẫu): muốn thêm thì đề xuất trong thư báo, AI chính/chủ dự án gộp vào file sẵn có. AI phụ tự tạo file thước đo mới = thêm một nguồn trùng, lệch với cái cũ.
 9. **Một nguồn sự thật cho mỗi điều.** Tài liệu nào sinh từ tài liệu khác (sơ đồ, README, tài liệu API) → ghi rõ "sửa A thì sửa cả B", hoặc sinh tự động.
 10. **Bí mật chỉ ở một chỗ** (`.env` hoặc kho bí mật). Không ghi ra log, bộ nhớ AI, thư, gói gửi đi, commit.
+11. **Mỗi việc/cổng có MỘT cửa liệt kê mọi kiểm tra phải qua.** Thước đo rải ở nhiều file (thước kỹ thuật, thước chất lượng, thước "dễ nhớ"…) mà không chỗ nào gom lại → AI chấm theo file nó mở và bỏ sót file còn lại; khi bị hỏi về điểm thiếu thì lại đẻ thêm thước mới trùng. Cửa ghi: các thước phải đạt + ngưỡng + máy chặn + **luật ưu tiên khi hai thước gợi ý ngược nhau**. Thước mới chỉ được THÊM vào file sẵn có, không tạo file thước riêng.
 
 ## 5. Vệ sinh file — ghi, sửa, dọn, file do agent sinh
 **Ghi file**
@@ -72,6 +76,8 @@ Thắng khi mâu thuẫn: lời chủ dự án > Chung > Riêng > Đơn vị vi�
 - Hạn giữ: tạm/log/cache 7 ngày · nháp tới khi đơn vị việc xong · lưu trữ 3 tháng rồi rà (không ai dẫn tới → xoá).
 - Bản sao có chủ đích (gói giao khách, bản phát hành) ghi rõ trong bản đồ là bản sao, không sửa vào bản sao.
 - **Máy kiểm:** `python scripts/kiem_ve_sinh_thu_muc.py <dự_án>` (chỉ đọc) — gốc lạ, tên bản chép/phiên bản, file cũ ở chỗ AI tự nạp, tạm/rỗng, báo cáo lạc chỗ, file mồ côi, file trùng. Chạy mỗi tuần trong lịch rà soát và trước khi đóng gói/chuyển máy; ⛔ phải xử lý.
+  Đơn vị việc đang làm dở có nháp mang số phiên bản (`_v1`, `_v2`…) hợp lệ → chạy kèm `--bo-qua <thư_mục_đơn_vị_việc>` để cảnh báo thật không lẫn vào; tới bước Dọn của đơn vị việc thì chạy lại không bỏ qua.
+  Đồ thử / repo bên thứ ba tải về để so sánh **clone ra thư mục tạm ngoài dự án**, chỉ chép bảng kết quả vào dự án.
 
 ## 6. Rà soát chống mục rữa
 - `RA_SOAT_DINH_KY.md`: mỗi lớp ghi file nào · lịch rà · sự kiện buộc rà ngay · cách rà · ngày rà gần nhất.

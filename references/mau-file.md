@@ -15,7 +15,7 @@ Vai của bạn: <người làm / người kiểm độc lập / người thu th
 
 
 ## 2. Thứ tự ưu tiên khi mâu thuẫn
-Lời <chủ dự án> > tài liệu mục 1 > tham số riêng > tài liệu cũ trong `tham_khao_cu/` (chỉ tra cứu).
+Lời <chủ dự án> > tài liệu mục 1 > tham số riêng. Tài liệu bỏ dùng → xoá, không giữ "chỉ tra cứu" (SKILL §4.7).
 
 ## 3. Không bao giờ
 - <tự gửi khách / tự xuất bản / tự tiêu tiền / tự deploy production / sửa DB production bằng tay>.
@@ -73,6 +73,6 @@ Mỗi thứ Hai mở file này, làm các dòng đến hạn, ghi ngày. Có s�
 | 4 Agent | … | Mỗi lần model đổi | Model / app cập nhật | Giao lại việc cũ đã biết đáp án | <ngày> |
 | 5 Công cụ | cong_cu/, CLI, MCP, API | 1 tháng | Lỗi lạ; dịch vụ đổi | Chạy thử từng công cụ; ghi phiên bản | <ngày> |
 
-## Kho cũ
-- `kho_tri_thuc/tham_khao_cu/` — chỉ tra cứu, AI không tự nạp. Rà 3 tháng: không còn ai dẫn tới → xoá.
+## Tài liệu bỏ dùng
+- Mặc định xoá (grep tên ra 0 chỗ dẫn). Chỉ giữ khi thật cần tra: đặt ngoài mọi chỗ AI tự nạp, ghi hạn rà 3 tháng; hết hạn không ai dẫn tới → xoá.
 ```
