@@ -31,9 +31,12 @@ Chi tiết từng lớp: `references/nam-lop-chi-tiet.md`. Khung thư mục theo
    có khoá API, tài khoản, dữ liệu khách hàng nào cần bảo vệ.
 3. **Dựng khung thư mục** theo đúng loại. Dự án phần mềm: **không phá cấu trúc chuẩn của ngôn ngữ/framework** — chỉ thêm lớp chỉ dẫn và quy trình bên cạnh.
 4. **Viết lớp 1 trước tiên** (mẫu A): ai, làm gì, đọc file nào theo thứ tự, ưu tiên khi mâu thuẫn, ≤ 5 điều "không bao giờ", lệnh chạy/kiểm cơ bản. Dưới 40 dòng.
+   - **Đã có file chỉ dẫn** (`CLAUDE.md`, `AGENTS.md`, README, quy ước cũ): đọc hết trước, gộp ý vào bản mới; **không viết đè** nội dung người dùng đã viết khi chưa đọc và chưa báo.
+   - **Một file chính duy nhất** (file của AI chính, hoặc file dự án đang dùng). File của AI khác (`AGENTS.md`, `GEMINI.md`) chỉ vài dòng: vai riêng + "đọc `<file chính>`". Không chép ba bản cùng nội dung — chép tay sớm muộn lệch nhau.
 5. **Viết bảng việc** (mẫu B): mỗi việc lặp lại một dòng. Lúc đầu 3–5 việc đã biết chắc.
 6. **Tạo `RA_SOAT_DINH_KY.md`** (mẫu D) ngay từ ngày đầu, ghi ngày.
 7. **Dừng.** Luật, agent, công cụ chỉ thêm khi gặp vấn đề thật (mục 4). Một file chỉ dẫn tốt + một quy trình + một máy chặn là đủ chạy.
+8. **Báo cáo dựng xong** (trong khung chat, ngắn): đã thêm/sửa file gì, ở đâu · lớp nào **cố ý để sau** và vì sao · mốc rà tiếp theo · giả định còn treo, kết nối chưa xong. Kiểm lại: mọi đường dẫn trong chỉ dẫn mở được, không có hai nguồn nói khác nhau.
 
 ## 3. Ba tầng — áp cho mọi loại dự án
 **Chung** (cách làm đúng ở mọi đơn vị việc) → **Riêng** (một khách hàng / một module / một kênh / một sản phẩm) → **Đơn vị việc** (một tính năng, một đơn, một chiến dịch: nhật ký quyết định, bản nộp, kết quả kiểm).
@@ -51,10 +54,13 @@ Thắng khi mâu thuẫn: lời chủ dự án > Chung > Riêng > Đơn vị vi�
 6. **Sửa tại chỗ, không tạo bản "mới", "v2", "final", "_enhanced".** Hai bản cùng tồn tại = AI đọc nhầm bản. Với code: dùng git, không nhân bản file.
 7. **File cũ không được nằm ở chỗ AI tự nạp** (`.claude/`, `.agents/`, `.cursor/`, gốc dự án, thư mục skills, `~/.claude/`). Ghi chữ "cũ" trong file là KHÔNG đủ: skill/agent cũ vẫn tự bật theo mô tả. **Mặc định xoá** (grep tên ra 0 chỗ dẫn tới). Tài liệu "chỉ để tra cứu" vẫn bị AI đọc rồi làm theo và sinh mâu thuẫn; chỉ giữ khi thật cần tra, đặt ngoài mọi chỗ tự nạp, ghi hạn rà — hết hạn không ai dẫn tới thì xoá.
 8. **Nhiều AI làm chung: mỗi lần một việc** qua hộp thư (hoặc issue/ticket); việc mới chỉ giao sau khi việc trước báo XONG. Việc chờ để ở một ngăn riêng mà AI nhận không đọc, chuyển sang khi có XONG.
+   Thư theo mẫu F (Từ / Gửi / Về / trả lời thư nào / trạng thái). **Thư chỉ báo nhận, cảm ơn → không trả lời**, chỉ chuyển vào `da_doc/` — trả lời thư báo nhận sinh vòng chuông qua lại vô tận.
+   Thư giao việc ghi rõ: được đọc gì, **cấm đọc gì** (`.env`, thư mục bí mật), được ghi vào đâu, việc nào phải hỏi người trước.
    **AI phụ không tạo tài liệu chung** (luật, thước đo, quy trình, mẫu): muốn thêm thì đề xuất trong thư báo, AI chính/chủ dự án gộp vào file sẵn có. AI phụ tự tạo file thước đo mới = thêm một nguồn trùng, lệch với cái cũ.
 9. **Một nguồn sự thật cho mỗi điều.** Tài liệu nào sinh từ tài liệu khác (sơ đồ, README, tài liệu API) → ghi rõ "sửa A thì sửa cả B", hoặc sinh tự động.
 10. **Bí mật chỉ ở một chỗ** (`.env` hoặc kho bí mật). Không ghi ra log, bộ nhớ AI, thư, gói gửi đi, commit.
 11. **Mỗi việc/cổng có MỘT cửa liệt kê mọi kiểm tra phải qua.** Thước đo rải ở nhiều file (thước kỹ thuật, thước chất lượng, thước "dễ nhớ"…) mà không chỗ nào gom lại → AI chấm theo file nó mở và bỏ sót file còn lại; khi bị hỏi về điểm thiếu thì lại đẻ thêm thước mới trùng. Cửa ghi: các thước phải đạt + ngưỡng + máy chặn + **luật ưu tiên khi hai thước gợi ý ngược nhau**. Thước mới chỉ được THÊM vào file sẵn có, không tạo file thước riêng.
+12. **Không bịa số, không bịa chuyện thật.** Số đo, giá, cam kết, tên khách mà chưa có nguồn → để `[...]` hoặc đánh dấu ⚠, cuối bản nộp có danh sách "cần xác nhận trước khi dùng". Bản nộp còn ⚠ thì không được gửi ra ngoài.
 
 ## 5. Vệ sinh file — ghi, sửa, dọn, file do agent sinh
 **Ghi file**
@@ -75,12 +81,14 @@ Thắng khi mâu thuẫn: lời chủ dự án > Chung > Riêng > Đơn vị vi�
 - **Bước cuối của mỗi đơn vị việc là "Dọn"** (một dòng trong bảng việc): xoá nháp, file tạm, bản trung gian; chỉ giữ bản NỘP và nhật ký.
 - Hạn giữ: tạm/log/cache 7 ngày · nháp tới khi đơn vị việc xong · lưu trữ 3 tháng rồi rà (không ai dẫn tới → xoá).
 - Bản sao có chủ đích (gói giao khách, bản phát hành) ghi rõ trong bản đồ là bản sao, không sửa vào bản sao.
-- **Máy kiểm:** `python scripts/kiem_ve_sinh_thu_muc.py <dự_án>` (chỉ đọc) — gốc lạ, tên bản chép/phiên bản, file cũ ở chỗ AI tự nạp, tạm/rỗng, báo cáo lạc chỗ, file mồ côi, file trùng. Chạy mỗi tuần trong lịch rà soát và trước khi đóng gói/chuyển máy; ⛔ phải xử lý.
+- **Máy kiểm:** `python scripts/kiem_ve_sinh_thu_muc.py <dự_án>` (chỉ đọc) — gốc lạ, tên bản chép/phiên bản, file cũ ở chỗ AI tự nạp, tạm/rỗng, báo cáo lạc chỗ, file mồ côi, file trùng, khoá lộ trong file chữ. Thêm `--ca-may` để soi cả skills/agents cấp máy (`~/.claude`). Chạy mỗi tuần trong lịch rà soát và trước khi đóng gói/chuyển máy; ⛔ phải xử lý.
   Đơn vị việc đang làm dở có nháp mang số phiên bản (`_v1`, `_v2`…) hợp lệ → chạy kèm `--bo-qua <thư_mục_đơn_vị_việc>` để cảnh báo thật không lẫn vào; tới bước Dọn của đơn vị việc thì chạy lại không bỏ qua.
   Đồ thử / repo bên thứ ba tải về để so sánh **clone ra thư mục tạm ngoài dự án**, chỉ chép bảng kết quả vào dự án.
+- **Việc chạy hàng loạt** (nhiều đơn vị việc giống nhau, nhiều phiên, nhiều AI): một file tiến độ (mẫu E), mỗi dòng một đơn vị, mỗi cột một bước. Phiên mới, máy khác, hay sau khi hội thoại bị tóm tắt đọc file này là biết làm tiếp từ đâu.
 
 ## 6. Rà soát chống mục rữa
-- `RA_SOAT_DINH_KY.md`: mỗi lớp ghi file nào · lịch rà · sự kiện buộc rà ngay · cách rà · ngày rà gần nhất.
+- `RA_SOAT_DINH_KY.md`: mỗi lớp ghi file nào · ai chịu trách nhiệm · lịch rà · sự kiện buộc rà ngay · cách rà · ngày rà gần nhất · **quyết định** (giữ / sửa / thay / bỏ). Ngày là lời nhắc, không thay cho rà theo sự kiện.
+- **Bộ nhớ của AI** (`~/.claude/projects/<dự án>/memory/`, memory của Cursor/Codex…) cũng mục: ghi nhớ trỏ tới file đã đổi tên, luật cũ trong bộ nhớ chồng luật mới. Rà 1 tháng/lần: mỗi ghi nhớ còn đúng không, file nó nhắc còn không; điều đã thành luật thì chuyển vào file chỉ dẫn và xoá khỏi bộ nhớ.
 - Lịch gợi ý: agent → mỗi lần model đổi · quy trình → 2–4 tuần · công cụ, máy chặn → 1 tháng (sớm hơn khi thư viện/API đổi) · luật, chỉ dẫn gốc → 3 tháng.
 - Phép rà nhanh nhất cho quy trình: **cho một máy/phiên mới làm theo đúng hướng dẫn**, ghi chỗ nó lạc. Chỗ lạc là lỗi của hướng dẫn, không phải của AI.
 - Model mới ra: giao lại một việc cũ đã biết đáp án, so kết quả.

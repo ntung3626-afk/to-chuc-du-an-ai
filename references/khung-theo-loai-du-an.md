@@ -28,7 +28,7 @@ Dự án lai (vd CRM + đội quảng cáo dùng CRM): mỗi phần một khung,
 ## B. Sản xuất / vận hành (nội dung, quảng cáo, bán hàng, chăm sóc khách, kế toán, nhân sự)
 ```
 <du_an>/
-├── CLAUDE.md · AGENTS.md · GEMINI.md
+├── CLAUDE.md                        file chỉ dẫn chính (AGENTS.md · GEMINI.md nếu có chỉ trỏ về đây)
 ├── HUONG_DAN.md                     bảng việc + bản đồ thư mục + công cụ theo việc + việc đang treo
 ├── HUONG_DAN_TUNG_BUOC.md           lệnh / thao tác cụ thể từng việc + phiếu nộp
 ├── RA_SOAT_DINH_KY.md
@@ -37,9 +37,11 @@ Dự án lai (vd CRM + đội quảng cáo dùng CRM): mỗi phần một khung,
 ├── <nhom>/<ten>/                    tầng RIÊNG: một kênh / một khách hàng / một sản phẩm / một chi nhánh — tham số riêng
 │   └── <don_vi_viec>/               tầng ĐƠN VỊ VIỆC: một sản phẩm nội dung / một chiến dịch / một đơn / một kỳ sổ
 ├── cong_cu/<nhom_viec>/             script theo việc
-└── giao_viec/                       hộp thư giữa các AI (nếu có nhiều AI)
+├── TIEN_DO.md                       (khi chạy hàng loạt) mẫu E
+└── giao_viec/hop_thu/<ten_ai>/      hộp thư giữa các AI (nếu có nhiều AI), thư theo mẫu F, đã đọc → da_doc/
 ```
-- **Máy chặn điển hình:** script kiểm trước khi xuất bản / gửi khách / tăng ngân sách / chốt sổ (đủ file, đúng định dạng, có kết quả QC, số khớp nguồn).
+- **Máy chặn điển hình:** script kiểm trước khi xuất bản / gửi khách / tăng ngân sách / chốt sổ (đủ file, đúng định dạng, có kết quả QC, số khớp nguồn, **không còn `[...]` / ⚠ chưa xác nhận**).
+- **Không bịa số:** bản nộp (kịch bản, báo giá, bài đăng, báo cáo) có số đo, giá, cam kết, chuyện khách thật chưa có nguồn → để `[...]` + ⚠, cuối file có danh sách "đội cần xác nhận trước khi dùng". Không dùng câu chứng nhận (đạt chuẩn, đạt TCVN…) khi chưa có giấy tờ.
 - **Thước đo** (bảng chấm, checklist) viết thành file ở `kho_tri_thuc/`, mỗi việc cần chấm có **mẫu nhờ kiểm riêng**.
 - **Bẫy riêng:** tham số của nhóm này chép sang nhóm khác (mỗi khách hàng / kênh / chi nhánh đo riêng); quyết định tiêu tiền hoặc gửi ra ngoài do AI tự làm.
 
